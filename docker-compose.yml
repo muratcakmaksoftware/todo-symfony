@@ -1,0 +1,55 @@
+version: '3'
+
+services:
+  php:
+    restart: always
+    container_name: app-php
+    working_dir: /var/www
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./:/var/www
+    networks:
+      default:
+        ipv4_address: 172.20.0.10
+
+  web:
+    restart: always
+    container_name: app-nginx
+    build:
+      context: ./docker/nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      default:
+        ipv4_address: 172.20.0.20
+
+  database:
+    restart: always
+    container_name: app-database
+    image: mysql:8.0.29
+    environment:
+      MYSQL_DATABASE: todo_symfony
+      MYSQL_USER: todo_user
+      MYSQL_PASSWORD: 123456
+      MYSQL_ROOT_PASSWORD: 12346789
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./docker/mysql/data:/var/lib/mysql
+    networks:
+      default:
+        ipv4_address: 172.20.0.30
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+
