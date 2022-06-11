@@ -20,4 +20,8 @@ RUN apk update \
     pdo \
     pdo_mysql \
     && docker-php-ext-enable \
-    pdo_mysql
+    pdo_mysql \
+    && bootstrap.sh
+
+COPY --from=composer /usr/bin/composer /usr/bin/composer
+
