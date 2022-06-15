@@ -2,7 +2,7 @@ version: '3'
 
 services:
   php:
-    restart: always
+    restart: on-failure
     container_name: app-php
     working_dir: /var/www
     build:
@@ -12,6 +12,7 @@ services:
       - "9000:9000"
     volumes:
       - ./:/var/www
+    #command: ["/bin/sh", "-c", "/startup/bootstrap.sh"]
     networks:
       default:
         ipv4_address: 172.20.0.10
@@ -31,7 +32,9 @@ services:
   database:
     restart: always
     container_name: app-database
-    image: mysql:8.0.29
+    build:
+      context: ./docker/mysql
+      dockerfile: Dockerfile
     environment:
       MYSQL_DATABASE: todo_symfony
       MYSQL_USER: todo_user
@@ -51,5 +54,3 @@ networks:
     ipam:
       config:
         - subnet: 172.20.0.0/16
-
-
