@@ -1,0 +1,50 @@
+{% extends 'backend/layout/base.html.twig' %}
+
+{% block title %}Tasks{% endblock %}
+
+{% block body %}
+    <h1>Tasks</h1>
+
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <a href="{{ path('app_task_create') }}">
+                <button type="button" class="btn btn-success">New Task</button>
+            </a>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+            <th scope="col">Show</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+                <tr>
+                    <td>{{ task.id }}</td>
+                    <td>{{ task.title }}</td>
+                    <td>{{ task.description }}</td>
+                    <td>{{ task.status }}</td>
+                    <td>
+                        <a href="{{ path('app_task_show', {'id': task.id}) }}">
+                            <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></span> Show</button>
+                        </a>
+                        <a href="{{ path('app_task_edit', {'id': task.id}) }}">
+                            <button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
+                        </a>
+                        <a href="{{ path('app_task_delete', {'id': task.id}) }}">
+                            <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove-circle"></span> Delete</button>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
