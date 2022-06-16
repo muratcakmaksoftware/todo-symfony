@@ -2,17 +2,17 @@ version: '3'
 
 services:
   php:
-    restart: on-failure
+    restart: always
     container_name: app-php
-    working_dir: /var/www
+    working_dir: /var/www/html
     build:
       context: ./docker/php
       dockerfile: Dockerfile
     ports:
       - "9000:9000"
     volumes:
-      - ./:/var/www
-    #command: ["/bin/sh", "-c", "/startup/bootstrap.sh"]
+      - ./:/var/www/html
+    command: ["/bin/sh", "-c", "/startup/bootstrap.sh"]
     networks:
       default:
         ipv4_address: 172.20.0.10

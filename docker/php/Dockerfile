@@ -12,21 +12,20 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 COPY bootstrap.sh /startup/
 
 RUN apk update \
-    && apk add --no-cache
-#    bash \
-#    libzip-dev \
-#    zip \
-#    unzip \
-#    icu-dev \
-#    && docker-php-ext-configure  \
-#    intl \
-#    && docker-php-ext-install \
-#    intl \
-#    opcache \
-#    mysqli \
-#    pdo \
-#    pdo_mysql \
-#    && docker-php-ext-enable \
-#    pdo_mysql \
-
-CMD ["/bin/sh", "/startup/bootstrap.sh"]
+    && apk add --no-cache \
+    bash \
+    libzip-dev \
+    zip \
+    unzip \
+    icu-dev \
+    && docker-php-ext-configure  \
+    intl \
+    && docker-php-ext-install \
+    intl \
+    opcache \
+    mysqli \
+    pdo \
+    pdo_mysql \
+    && docker-php-ext-enable \
+    pdo_mysql \
+    && chmod -R 777 /startup/bootstrap.sh
