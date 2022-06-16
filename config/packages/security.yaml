@@ -37,7 +37,6 @@ security:
   access_control:
     - { path: '^/admin/login', roles: PUBLIC_ACCESS }
     - { path: '^/admin/register', roles: PUBLIC_ACCESS }
-    - { path: '^/', roles: PUBLIC_ACCESS }
     #IS_AUTHENTICATED_FULLY login olan kullanıcının rolü önemli değilse kullanılır bunun yerine ROLE_USER tüm login olan kişilere verdiğiniz bir rolü'de kullanabiliriz.
     - { path: '^/admin', roles: [ IS_AUTHENTICATED_FULLY, ROLE_USER, ROLE_ADMIN ] }
 
