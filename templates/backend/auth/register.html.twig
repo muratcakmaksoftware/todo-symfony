@@ -12,6 +12,6 @@
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
-        <button type="submit" class="btn">Register</button>
+        {{ form_row(registrationForm.save) }}
     {{ form_end(registrationForm) }}
 {% endblock %}

@@ -78,7 +78,6 @@ class TaskController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $taskRepository->add($task, true);
-
             return $this->redirectToRoute('app_task_index', [], Response::HTTP_SEE_OTHER);
         }
 
