@@ -5,6 +5,7 @@
 {% block body %}
     <h1>New Task</h1>
     <form action="{{ path('app_task_store') }}" method="POST" >
+        <input type="hidden" name="token" value="{{ csrf_token('task-store') }}"/>
         <div class="form-group">
             <label for="title">Title</label>
             <input type="text" name="title" class="form-control" id="title" placeholder="Title">
@@ -16,9 +17,9 @@
         </div>
 
         <select class="form-control" name="status">
-            <option value="0" selected>Waiting</option>
-            <option value="1">In-Progress</option>
-            <option value="2">Done</option>
+            {% for index,statusText in taskStatusTexts %}
+                <option value="{{ index }}" {% if index == 0 %} selected {% endif %}>{{ statusText }}</option>
+            {% endfor %}
         </select>
 
         <div class="row">

@@ -2,8 +2,10 @@
 
 namespace App\Entity;
 
+use App\Enum\Task\TaskEnum;
 use App\Repository\Backend\Task\TaskRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[ORM\Entity(repositoryClass: TaskRepository::class)]
 class Task
@@ -79,12 +81,8 @@ class Task
         return $this;
     }
 
-    public static function getTextStatus()
+    public function getTextStatus()
     {
-        return [
-            'Waiting' => 0,
-            'In-Progress' => 1,
-            'Done' => 2
-        ];
+        return TaskEnum::$taskStatusTextEnum[$this->status];
     }
 }

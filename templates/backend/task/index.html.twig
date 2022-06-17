@@ -2,6 +2,14 @@
 
 {% block title %}Tasks{% endblock %}
 
+{% block custom_css %}
+    <style>
+        table thead tr th{
+            text-align: center!important;
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
     <h1>Tasks</h1>
 
@@ -13,17 +21,17 @@
         </div>
     </div>
 
-    <table class="table">
+    <table class="table text-center" style="margin-top:10px">
         <thead>
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Title</th>
-            <th scope="col">Description</th>
-            <th scope="col">Status</th>
-            <th scope="col">Show</th>
-            <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
-        </tr>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Status</th>
+                <th style="width: 10%">Show</th>
+                <th style="width: 10%">Edit</th>
+                <th style="width: 10%">Delete</th>
+            </tr>
         </thead>
         <tbody>
             {% for task in tasks %}
@@ -31,14 +39,18 @@
                     <td>{{ task.id }}</td>
                     <td>{{ task.title }}</td>
                     <td>{{ task.description }}</td>
-                    <td>{{ task.status }}</td>
+                    <td>{{ task.getTextStatus() }}</td>
                     <td>
                         <a href="{{ path('app_task_show', {'id': task.id}) }}">
                             <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></span> Show</button>
                         </a>
+                    </td>
+                    <td>
                         <a href="{{ path('app_task_edit', {'id': task.id}) }}">
                             <button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
                         </a>
+                    </td>
+                    <td>
                         <a href="{{ path('app_task_delete', {'id': task.id}) }}">
                             <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove-circle"></span> Delete</button>
                         </a>
