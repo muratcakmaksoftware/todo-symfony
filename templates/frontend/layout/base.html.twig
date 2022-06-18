@@ -2,8 +2,11 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <title>{% block title %}Base!{% endblock %}</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -12,8 +15,30 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+
+        <style>
+            .navbar-nav{
+                float: right!important;
+            }
+        </style>
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <div class="container">
+            {% block menu %}
+                <nav class="navbar navbar-inverse" style="margin-top:10px">
+                    <div class="container-fluid">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="{{ path('app_admin_login') }}">Login</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('app_admin_register') }}">Register</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            {% endblock %}
+            {% block body %}{% endblock %}
+        </div>
     </body>
 </html>

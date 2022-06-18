@@ -39,7 +39,7 @@
                     <td>{{ task.id }}</td>
                     <td>{{ task.title }}</td>
                     <td>{{ task.description }}</td>
-                    <td>{{ task.getTextStatus() }}</td>
+                    <td>{{ task.getStatusText() }}</td>
                     <td>
                         <a href="{{ path('app_task_show', {'id': task.id}) }}">
                             <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></span> Show</button>

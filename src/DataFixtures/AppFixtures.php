@@ -20,6 +20,7 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $user = new User();
+        $user->setName('Murat Çakmak');
         $user->setEmail('murat@hotmail.com');
         $user->setPassword(
             $this->userPasswordHasher->hashPassword(
@@ -29,7 +30,7 @@ class AppFixtures extends Fixture
         );
         $user->setRoles(['ROLE_USER']);
 
-        $manager->persist($user); //Modele göre sorgu hazırlanır
-        $manager->flush(); //Sorgu çalıştırılır.
+        $manager->persist($user);
+        $manager->flush();
     }
 }

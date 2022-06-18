@@ -81,7 +81,7 @@ class Task
         return $this;
     }
 
-    public function getTextStatus()
+    public function getStatusText()
     {
         return TaskEnum::$taskStatusTextEnum[$this->status];
     }

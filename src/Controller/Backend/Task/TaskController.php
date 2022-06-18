@@ -26,8 +26,9 @@ class TaskController extends AbstractController
     #[Route('/', name: 'app_task_index', methods: ['GET'])]
     public function index(TaskRepository $taskRepository): Response
     {
+        $user = $this->security->getUser();
         return $this->render('backend/task/index.html.twig', [
-            'tasks' => $taskRepository->findAll(),
+            'tasks' => $user->getTasks(), //$tasks = $taskRepository->findBy(['user' => $user->getId()]);
         ]);
     }
 
@@ -87,13 +88,10 @@ class TaskController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_task_delete', methods: ['POST'])]
-    public function delete(Request $request, Task $task, TaskRepository $taskRepository): Response
+    #[Route('/{id}/delete', name: 'app_task_delete', methods: ['GET'])]
+    public function delete(Task $task, TaskRepository $taskRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $task->getId(), $request->request->get('_token'))) {
-            $taskRepository->remove($task, true);
-        }
-
+        $taskRepository->remove($task, true);
         return $this->redirectToRoute('app_task_index', [], Response::HTTP_SEE_OTHER);
     }
 }
