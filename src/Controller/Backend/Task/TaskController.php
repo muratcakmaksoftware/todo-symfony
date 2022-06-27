@@ -83,7 +83,6 @@ class TaskController extends AbstractController
         }
 
         return $this->renderForm('backend/task/edit.html.twig', [
-            'task' => $task,
             'form' => $form,
         ]);
     }

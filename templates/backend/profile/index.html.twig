@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+{% extends 'backend/layout/base.html.twig' %}
 
 {% block title %}Profile{% endblock %}
 
 {% block body %}
-    {{ form_start() }}
-    {{ form_end() }}
+    {{ form_start(form) }}
+    {{ form_end(form) }}
 {% endblock %}
