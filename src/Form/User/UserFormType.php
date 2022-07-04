@@ -42,9 +42,10 @@ class UserFormType extends AbstractType
             ])
             ->add('password', PasswordType::class,[
                 'required' => false,
+                'empty_data' => '', //default value
                 'attr' => [
-                    'autocomplete' => 'new-password',
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'value' => ''
                 ],
                 'constraints' => [
                     new NotBlank([
