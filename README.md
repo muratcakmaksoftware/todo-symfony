@@ -18,5 +18,6 @@ Password: 123456
 ![New Task](documents/new-task.jpg)
 ![Task Edit](documents/task-edit.jpg)
 ![Task Detail](documents/task-detail.jpg)
+![Profile](documents/profile.jpg)
 
 
